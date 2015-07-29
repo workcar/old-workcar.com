@@ -1,0 +1,19 @@
+{
+  "name": "workcar",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Homebrew/homebrew",
+  "authors": [
+    "Phaninder <pasupulaphani@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-socialsharing": "~0.1.3"
+  }
+}
