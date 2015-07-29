@@ -11,7 +11,7 @@ angular.module('app', [
     $locationProvider.html5Mode(true);
     $routeProvider
         .when('/', {
-            templateUrl: 'views/main.html',
+            templateUrl: 'views/register.html',
             controller: 'RegisterCtrl'
         })
         .when('/register', {
@@ -40,6 +40,7 @@ angular.module('app', [
         var newCustomer = {
             firstName: '',
             lastName: '',
+            mobile: '',
             email: '',
             password: ''
         };
@@ -71,6 +72,7 @@ angular.module('app', [
             ctrl.newCustomer = {
                 firstName: '',
                 lastName: '',
+                mobile: '',
                 email: '',
                 password: ''
             }
@@ -91,6 +93,10 @@ angular.module('app', [
             ctrl.showUsernamePrompt = value;
         };
 
+        var toggleMobilePrompt = function(value) {
+            ctrl.toggleMobilePrompt = value;
+        };
+
         var hasErrorClass = function(field) {
             return ctrl.signupForm[field].$touched && ctrl.signupForm[field].$invalid;
         };
@@ -105,6 +111,7 @@ angular.module('app', [
         ctrl.showSubmittedErrors = [];
         ctrl.toggleEmailPrompt = toggleEmailPrompt;
         ctrl.toggleUsernamePrompt = toggleUsernamePrompt;
+        ctrl.toggleMobilePrompt = toggleMobilePrompt;
         ctrl.getPasswordType = getPasswordType;
         ctrl.hasErrorClass = hasErrorClass;
         ctrl.showMessages = showMessages;
