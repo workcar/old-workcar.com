@@ -558,16 +558,6 @@ header.contextual .logo {
     color: #959595;
 }
 
-.logo {
-    position: relative;
-    height: 46px;
-    width: 320px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 80px;
-    margin-bottom: 30px;
-    z-index: 1;
-}
 
 .float-left {
     float: left;

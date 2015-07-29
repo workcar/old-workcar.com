@@ -3,29 +3,32 @@
         <img src="img/office-3.jpg" <section class="signup-form" style="padding-bottom: 60px; margin-left: -360px">
         <article class="form-container">
             <form name="ctrl.signupForm" ng-submit="ctrl.signup()" novalidate>
-                <div class="form-group required" ng-class="{'has-error':ctrl.hasErrorClass('firstName')}">
-                    <label for="firstName">First Name</label>
-                    <input id="firstName" name="firstName" class="form-control" type="text" required ng-model="ctrl.newCustomer.firstName" ng-model-options="{ updateOn : 'default blur' }" ng-focus="ctrl.toggleUsernamePrompt(true)" ng-blur="ctrl.toggleUsernamePrompt(false)" />
-                    <div class="my-messages">
-                        <div class="prompt message-animation" ng-if="ctrl.showUsernamePrompt">
+                <div class="form-group required ">
+                    <label for="name">Name</label>
+                    <div class="row form-row">
+                        <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+                            <input placeholder="First name" id="firstName" name="firstName" class="form-control" type="text" required ng-model="ctrl.newCustomer.firstName" ng-model-options="{ updateOn : 'default blur' }" ng-focus="ctrl.toggleUsernamePrompt(true)" ng-blur="ctrl.toggleUsernamePrompt(false)" />
+                            <div class="my-messages">
+                                <div class="prompt message-animation" ng-if="ctrl.showUsernamePrompt">
+                                </div>
+                            </div>
+                            <div class="my-messages" ng-messages="ctrl.signupForm.firstName.$error" ng-if="ctrl.showMessages('firstName')">
+                                <div class="message-animation" ng-message="required">
+                                    <strong>This field is required.</strong>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="my-messages" ng-messages="ctrl.signupForm.firstName.$error" ng-if="ctrl.showMessages('firstName')">
-                        <div class="message-animation" ng-message="required">
-                            <strong>This field is required.</strong>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group required" ng-class="{'has-error':ctrl.hasErrorClass('lastName')}">
-                    <label for="lastName">Last Name</label>
-                    <input id="lastName" name="lastName" class="form-control" type="text" required ng-model="ctrl.newCustomer.lastName" ng-model-options="{ updateOn : 'default blur' }" ng-focus="ctrl.toggleUsernamePrompt(true)" ng-blur="ctrl.toggleUsernamePrompt(false)" />
-                    <div class="my-messages">
-                        <div class="prompt message-animation" ng-if="ctrl.showUsernamePrompt">
-                        </div>
-                    </div>
-                    <div class="my-messages" ng-messages="ctrl.signupForm.lastName.$error" ng-if="ctrl.showMessages('lastName')">
-                        <div class="message-animation" ng-message="required">
-                            <strong>This field is required.</strong>
+                        <div class="col-md-6 col-xs-6 md-push-left-half xs-push-left-half">
+                            <input id="lastName" placeholder="Last name" name="lastName" class="form-control" type="text" required ng-model="ctrl.newCustomer.lastName" ng-model-options="{ updateOn : 'default blur' }" ng-focus="ctrl.toggleUsernamePrompt(true)" ng-blur="ctrl.toggleUsernamePrompt(false)" />
+                            <div class="my-messages">
+                                <div class="prompt message-animation" ng-if="ctrl.showUsernamePrompt">
+                                </div>
+                            </div>
+                            <div class="my-messages" ng-messages="ctrl.signupForm.lastName.$error" ng-if="ctrl.showMessages('lastName')">
+                                <div class="message-animation" ng-message="required">
+                                    <strong>This field is required.</strong>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -37,12 +40,12 @@
                     <div class="mobile-country-mask">
                         <p class="mobile-country-mask-text">+1</p>
                     </div>
-                    <input type="tel" ng-model="ctrl.newCustomer.mobile" required ng-model-options="{ updateOn : 'default blur' }" ng-focus="ctrl.toggleMobilePrompt(true)" ng-blur="ctrl.toggleMobilePrompt(false)" value="" name="mobile" id="mobile" placeholder="(415) 555-5555">
+                    <input class="form-control" type="tel" ng-model="ctrl.newCustomer.mobile" required ng-model-options="{ updateOn : 'default blur' }" ng-focus="ctrl.toggleMobilePrompt(true)" ng-blur="ctrl.toggleMobilePrompt(false)" value="" name="mobile" id="mobile" placeholder="(415) 555-5555">
                     <div class="my-messages">
                         <div class="prompt message-animation" ng-if="ctrl.toggleMobilePrompt">
                         </div>
                     </div>
-                    <div class="my-messages" ng-messages="ctrl.signupForm.mobile.$error" ng-if="ctrl.showMessages('mobile')">
+                    <div class="my-messages" style="z-index: -1;" ng-messages="ctrl.signupForm.mobile.$error" ng-if="ctrl.showMessages('mobile')">
                         <div class="message-animation" ng-message="required">
                             <strong>This field is required.</strong>
                         </div>
