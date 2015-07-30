@@ -5,7 +5,8 @@ angular.module('app', [
     'ngAnimate',
     'ngCookies',
     'socialsharing',
-    'mailchimp'
+    'mailchimp',
+    'ngFileUpload'
 ])
 
 .constant('MAILCHIMP', {
@@ -25,6 +26,10 @@ angular.module('app', [
         .when('/register', {
             templateUrl: 'views/register.html',
             controller: 'RegisterCtrl'
+        })
+        .when('/verify', {
+            templateUrl: 'views/verify.html',
+            controller: 'VerifyCtrl'
         })
         .otherwise({
             redirectTo: '/'
@@ -49,7 +54,7 @@ angular.module('app', [
         var newCustomer = {
             firstName: '',
             lastName: '',
-            mobile: '',
+            mobilePhone: '',
             email: '',
             password: ''
         };
@@ -57,23 +62,15 @@ angular.module('app', [
         var signup = function() {
             if (ctrl.signupForm.$valid) {
 
-                $http.post('/api/customers', newCustomer).
+                $http.post('http://localhost:5000/signup', newCustomer).
                 success(function(data, status, headers, config) {
 
-                    if (data.hasOwnProperty('status') && data.status == "ok") {
-
-                        $location.path('/pledge')
-                        $cookies.put('user_access_token', data.user_access_token);
-                    } else {
-                        ctrl.showSubmittedPrompt = true;
-                        (data.errors).forEach(function(err) {
-                            for (var k in err) {
-                                (ctrl.showSubmittedErrors).push(err[k][0]);
-                            }
-                        })
-                    }
+                    $location.path('/verify')
                 }).
-                error(function(data, status, headers, config) {});
+                error(function(data, status, headers, config) {
+                    ctrl.showSubmittedPrompt = true;
+                    (ctrl.showSubmittedErrors).push("Failed to signup");
+                });
             }
         };
 
@@ -81,7 +78,7 @@ angular.module('app', [
             ctrl.newCustomer = {
                 firstName: '',
                 lastName: '',
-                mobile: '',
+                mobilePhone: '',
                 email: '',
                 password: ''
             }
@@ -132,85 +129,34 @@ angular.module('app', [
     }
 ])
 
-.controller('PledgeCtrl', ['$scope', '$location', '$http', '$cookies',
-
-    function($scope, $location, $http, $cookies) {
-
-        $scope.projects = [];
-
-        $http.get('/api/projects').
-        success(function(data, status, headers, config) {
-            $scope.projects = data;
-        }).
-        error(function(data, status, headers, config) {});
-
-        $scope.pledgeProject = function(id) {
-
-            var msg = {
-                action: 'pledge',
-                user_access_token: $cookies.get('user_access_token')
+.controller('VerifyCtrl', ['$scope', 'Upload', function($scope, Upload) {
+    $scope.$watch('files', function() {
+        $scope.upload($scope.files);
+    });
+    // set default directive values
+    // Upload.setDefaults( {ngf-keep:false ngf-accept:'image/*', ...} );
+    $scope.upload = function(files) {
+        if (files && files.length) {
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                Upload.upload({
+                    url: 'upload/url',
+                    fields: {
+                        'username': $scope.username
+                    },
+                    file: file
+                }).progress(function(evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                    console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                }).success(function(data, status, headers, config) {
+                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                }).error(function(data, status, headers, config) {
+                    console.log('error status: ' + status);
+                })
             }
-            $http.post('/api/projects/' + id, msg).
-            success(function(data, status, headers, config) {
-
-                console.warn(data)
-                $location.path('/twitter-start-app');
-            }).
-            error(function(data, status, headers, config) {
-                console.error('something went wrong');
-                // Todo: notify admin
-                // but let the user proceed
-                $location.path('/twitter-start-app');
-            });
         }
-    }
-])
-
-.controller('TwitterCtrl', ['$scope', '$location', '$http', '$cookies',
-
-    function($scope, $location, $http, $cookies) {
-
-        $scope.twtConnect = function() {
-
-            window.location.href = '/auth/twitter';
-        }
-    }
-])
-
-.controller('WalletCtrl', ['$scope', '$location', '$http', '$cookies',
-
-    function($scope, $location, $http, $cookies) {
-
-        $scope.getApp = function() {
-
-            $location.path('/send-address')
-        }
-    }
-])
-
-.controller('SendAddressCtrl', ['$scope', '$location', '$http', '$cookies', '$twt',
-
-    function($scope, $location, $http, $cookies, $twt) {
-
-        $scope.twtText = '';
-
-        $scope.tweetAddress = function(text) {
-
-            $twt.intent('tweet', {
-                text: $scope.twtText,
-                url: '',
-                hashtags: ''
-            });
-        }
-    }
-])
-
-.controller('ShoutCtrl', ['$scope', '$location', '$http', '$cookies',
-
-    function($scope, $location, $http, $cookies) {
-
-    }
-])
+    };
+}])
 
 .directive('validatePasswordCharacters', function() {
     return {

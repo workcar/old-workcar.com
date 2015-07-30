@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group js-mobile-country required mobile-number" ng-class="{'has-error':ctrl.hasErrorClass('mobile')}">
+                <div class="form-group js-mobile-country required mobile-number" ng-class="{'has-error':ctrl.hasErrorClass('mobilePhone')}">
                     <label for="mobile">Mobile Number</label>
                     <select name="mobile_country" id="mobile_country" class="js-mobile-country required">
                         <option value="US" label="United States (+1)" selected="" data-iso3="USA" data-telephone_code="+1">United States</option>
@@ -40,12 +40,12 @@
                     <div class="mobile-country-mask">
                         <p class="mobile-country-mask-text">+1</p>
                     </div>
-                    <input class="form-control" type="tel" ng-model="ctrl.newCustomer.mobile" required ng-model-options="{ updateOn : 'default blur' }" ng-focus="ctrl.toggleMobilePrompt(true)" ng-blur="ctrl.toggleMobilePrompt(false)" value="" name="mobile" id="mobile" placeholder="(415) 555-5555">
+                    <input class="form-control" type="tel" ng-model="ctrl.newCustomer.mobilePhone" required ng-model-options="{ updateOn : 'default blur' }" ng-focus="ctrl.toggleMobilePrompt(true)" ng-blur="ctrl.toggleMobilePrompt(false)" value="" name="mobilePhone" id="mobilePhone" placeholder="(415) 555-5555">
                     <div class="my-messages">
                         <div class="prompt message-animation" ng-if="ctrl.toggleMobilePrompt">
                         </div>
                     </div>
-                    <div class="my-messages" style="z-index: -1;" ng-messages="ctrl.signupForm.mobile.$error" ng-if="ctrl.showMessages('mobile')">
+                    <div class="my-messages" style="z-index: -1;" ng-messages="ctrl.signupForm.mobilePhone.$error" ng-if="ctrl.showMessages('mobilePhone')">
                         <div class="message-animation" ng-message="required">
                             <strong>This field is required.</strong>
                         </div>
@@ -82,7 +82,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="alert alert-danger message-animation" role="alert" ng-if="ctrl.showSubmittedPrompt">
+                <div class="alert alert-danger message-animation" style="margin-top: -25px;" role="alert" ng-if="ctrl.showSubmittedPrompt">
                     {{ctrl.showSubmittedErrors[0]}}
                 </div>
                 <p class="inline-block small-meta" style="margin-top: -25px;">By clicking this button, you agree to WorkCar's <a href="#" target="_blank">Terms &amp; Conditions</a>.</p>

@@ -1,0 +1,27 @@
+<form name="myForm">
+    <fieldset>
+        <br> Driving license:
+        <input type="file" ngf-select="" ng-model="picFile" name="driving_license" accept="image/*,application/pdf" required="">
+        <i ng-show="myForm.file.$error.required">*required</i>
+        <br>
+        <button ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)">Submit</button>
+        <img ng-show="picFile != null" ngf-src="picFile" class="thumb">
+        <span class="progress" ng-show="picFile.progress >= 0">
+                <div style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'" class="ng-binding"></div>
+            </span>
+        <span ng-show="picFile.result">Upload Successful</span>
+    </fieldset>
+    <fieldset>
+        <br> Recent Bank statement:
+        <input type="file" ngf-select="" ng-model="picFile" name="bank_statement" accept="image/*,application/pdf" required="">
+        <i ng-show="myForm.file.$error.required">*required</i>
+        <br>
+        <button ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)">Submit</button>
+        <img ng-show="picFile != null" ngf-src="picFile" class="thumb">
+        <span class="progress" ng-show="picFile.progress >= 0">
+                <div style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'" class="ng-binding"></div>
+            </span>
+        <span ng-show="picFile.result">Upload Successful</span>
+    </fieldset>
+    <br>
+</form>
