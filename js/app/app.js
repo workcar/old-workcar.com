@@ -4,8 +4,16 @@ angular.module('app', [
     'ngMessages',
     'ngAnimate',
     'ngCookies',
-    'socialsharing'
+    'socialsharing',
+    'mailchimp'
 ])
+
+.constant('MAILCHIMP', {
+    username: 'workcar',
+    dc: 'us11',
+    u: '48e3866be26d164fb12e857cc',
+    id: '8f21fd44e1'
+})
 
 .config(['$routeProvider', '$locationProvider', '$twtProvider', function($routeProvider, $locationProvider, $twtProvider) {
     $locationProvider.html5Mode(true);
@@ -27,9 +35,10 @@ angular.module('app', [
 
 }])
 
-.controller('AppCtrl', ['$scope', '$location',
-    function($scope, $location) {
+.controller('AppCtrl', ['$scope', '$location', 'MAILCHIMP',
+    function($scope, $location, MAILCHIMP) {
         $scope.location = $location;
+        $scope.MAILCHIMP = MAILCHIMP;
     }
 ])
 

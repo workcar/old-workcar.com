@@ -39,12 +39,12 @@
     <!-- Head Libs -->
     <script src="vendor/modernizr/modernizr.js"></script>
     <!--[if IE]>
-			<link rel="stylesheet" href="css/ie.css">
-		<![endif]-->
+            <link rel="stylesheet" href="css/ie.css">
+        <![endif]-->
     <!--[if lte IE 8]>
-			<script src="vendor/respond/respond.js"></script>
-			<script src="vendor/excanvas/excanvas.js"></script>
-		<![endif]-->
+            <script src="vendor/respond/respond.js"></script>
+            <script src="vendor/excanvas/excanvas.js"></script>
+        <![endif]-->
 </head>
 
 <body ng-app="app">
@@ -71,16 +71,16 @@
                         <ul class="nav nav-pills nav-main" id="mainMenu">
                             <li class="dropdown active">
                                 <a class="" ng-href="/register">
-										GET A WORKCAR
-									</a>
+                                        GET A WORKCAR
+                                    </a>
                                 <li class="dropdown">
                                     <a class="" href="#">
-										FAQ
-									</a>
+                                        FAQ
+                                    </a>
                                     <li class="dropdown">
                                         <a class="" href="#">
-										HELP
-									</a>
+                                        HELP
+                                    </a>
                         </ul>
                         </li>
                         </ul>
@@ -103,12 +103,27 @@
                                 <strong>Success!</strong> You've been added to our email list.
                             </div>
                             <div class="alert alert-danger hidden" id="newsletterError"></div>
-                            <form id="newsletterForm" action="php/newsletter-subscribe.php" method="POST">
-                                <div class="input-group">
-                                    <input class="form-control" placeholder="Email Address" name="newsletterEmail" id="newsletterEmail" type="text">
+                            <form id="newsletterForm" name="MailchimpSubscriptionForm" ng-controller="MailchimpSubscriptionCtrl">
+                                <div class="input-group" ng-hide="mailchimp.result === 'success'">
+                                    <input class="hidden" type="hidden" ng-model="mailchimp.username" ng-init="mailchimp.username='workcar'">
+                                    <input class="hidden" type="hidden" ng-model="mailchimp.dc" ng-init="mailchimp.dc='us11'">
+                                    <input class="hidden" type="hidden" ng-model="mailchimp.u" ng-init="mailchimp.u='48e3866be26d164fb12e857cc'">
+                                    <input class="hidden" type="hidden" ng-model="mailchimp.id" ng-init="mailchimp.id='8f21fd44e1'">
+                                    <input class="hidden" type="hidden" type="text" name="fname" ng-model="mailchimp.FNAME" placeholder="First name">
+                                    <input class="hidden" type="hidden" type="text" name="lname" ng-model="mailchimp.LNAME" placeholder="Last name">
+                                    <input class="form-control" placeholder="Email Address" type="email" name="email" ng-model="mailchimp.EMAIL" required>
                                     <span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Go!</button>
-										</span>
+                                            <button class="btn btn-default" ng-disabled="MailchimpSubscriptionForm.$invalid" ng-click="addSubscription(mailchimp)" type="submit">Go!</button>
+                                        </span>
+                                </div>
+                                <!--End mc_embed_signup-->
+                                <!-- Show error message if MailChimp unsuccessfully added the email to the list. -->
+                                <div ng-show="mailchimp.result === 'error'" ng-cloak>
+                                    <span ng-bind-html="mailchimp.errorMessage"></span>
+                                </div>
+                                <!-- Show success message if MailChimp returned successfully. -->
+                                <div ng-show="mailchimp.result === 'success'" ng-cloak>
+                                    <span ng-bind-html="mailchimp.successMessage"></span>
                                 </div>
                             </form>
                         </div>
@@ -186,8 +201,8 @@
     </div>
     <!-- Vendor -->
     <!--[if lt IE 9]>
-		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-		<![endif]-->
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <![endif]-->
     <!--[if gte IE 9]><!-->
     <script src="vendor/jquery/jquery.js"></script>
     <!--<![endif]-->
@@ -217,21 +232,20 @@
     <!-- Theme Initialization Files -->
     <script src="js/theme.init.js"></script>
     <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
-		<script type="text/javascript">
-		
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-12345678-1']);
-			_gaq.push(['_trackPageview']);
-		
-			(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
-		
-		</script>
-		 -->
-
+        <script type="text/javascript">
+        
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-12345678-1']);
+            _gaq.push(['_trackPageview']);
+        
+            (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        
+        </script>
+         -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-cookies.min.js"></script>
@@ -239,6 +253,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-aria.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.min.js"></script>
     <script src="bower_components/angular-socialsharing/dist/angular-socialsharing.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/angular-mailchimp/angular-mailchimp.js"></script>
     <script src="js/app/app.js"></script>
 </body>
 

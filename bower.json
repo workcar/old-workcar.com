@@ -14,6 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-socialsharing": "~0.1.3"
+    "angular-socialsharing": "~0.1.3",
+    "angular-mailchimp": "~0.0.3"
   }
 }
