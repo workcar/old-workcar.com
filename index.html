@@ -69,7 +69,7 @@
                     </ul>
                     <nav class="nav-main mega-menu">
                         <ul class="nav nav-pills nav-main" id="mainMenu">
-                            <li class="dropdown active">
+                            <li class="dropdown" ng-class="{active: ['/register', '/register/'].indexOf(location.path()) !== -1}">
                                 <a class="" ng-href="/register">
                                         GET A WORKCAR
                                     </a>
