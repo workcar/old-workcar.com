@@ -13,15 +13,15 @@
     </fieldset>
     <fieldset>
         <br> Recent Bank statement:
-        <input type="file" ngf-select="" ng-model="picFile" name="bank_statement" accept="image/*,application/pdf" required="">
+        <input type="file" ngf-select="" ng-model="picFile1" name="bank_statement" accept="image/*,application/pdf" required="">
         <i ng-show="myForm.file.$error.required">*required</i>
         <br>
-        <button ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)">Submit</button>
-        <img ng-show="picFile != null" ngf-src="picFile" class="thumb">
-        <span class="progress" ng-show="picFile.progress >= 0">
-                <div style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'" class="ng-binding"></div>
+        <button ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile1)">Submit</button>
+        <img ng-show="picFile1 != null" ngf-src="picFile1" class="thumb">
+        <span class="progress" ng-show="picFile1.progress >= 0">
+                <div style="width:{{picFile1.progress}}%" ng-bind="picFile1.progress + '%'" class="ng-binding"></div>
             </span>
-        <span ng-show="picFile.result">Upload Successful</span>
+        <span ng-show="picFile.1result">Upload Successful</span>
     </fieldset>
     <br>
 </form>

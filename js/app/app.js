@@ -20,7 +20,7 @@ angular.module('app', [
     $locationProvider.html5Mode(true);
     $routeProvider
         .when('/', {
-            templateUrl: 'views/register.html',
+            templateUrl: 'views/main.html',
             controller: 'RegisterCtrl'
         })
         .when('/register', {
