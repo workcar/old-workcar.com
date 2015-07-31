@@ -28,7 +28,7 @@ html .heading.heading-primary h6 {
 html .heading-secondary,
 html .lnk-secondary,
 html .text-color-secondary {
-	color: #e36159 !important;
+	color: # #76d681 !important;
 }
 
 html .heading.heading-secondary h1,
@@ -43,7 +43,7 @@ html .heading.heading-secondary h6 {
 html .heading-tertiary,
 html .lnk-tertiary,
 html .text-color-tertiary {
-	color: #2baab1 !important;
+	color: # #76d681 !important;
 }
 
 html .heading.heading-tertiary h1,
@@ -58,7 +58,7 @@ html .heading.heading-tertiary h6 {
 html .heading-quaternary,
 html .lnk-quaternary,
 html .text-color-quaternary {
-	color: #383f48 !important;
+	color: # #76d681 !important;
 }
 
 html .heading.heading-quaternary h1,
@@ -2679,11 +2679,11 @@ html .featured-box-secondary .icon-featured {
 }
 
 html .featured-box-secondary h4 {
-	color: #e36159;
+	color:  #76d681;
 }
 
 html .featured-box-secondary .box-content {
-	border-top-color: #e36159;
+	border-top-color: #76d681;
 }
 
 html .featured-box-tertiary .icon-featured {
@@ -2691,11 +2691,11 @@ html .featured-box-tertiary .icon-featured {
 }
 
 html .featured-box-tertiary h4 {
-	color: #2baab1;
+	color: #76d681;
 }
 
 html .featured-box-tertiary .box-content {
-	border-top-color: #2baab1;
+	border-top-color: #76d681;
 }
 
 html .featured-box-quaternary .icon-featured {
@@ -2703,11 +2703,11 @@ html .featured-box-quaternary .icon-featured {
 }
 
 html .featured-box-quaternary h4 {
-	color: #383f48;
+	color: #76d681;
 }
 
 html .featured-box-quaternary .box-content {
-	border-top-color: #383f48;
+	border-top-color: #76d681;
 }
 
 html .featured-box-dark .icon-featured {

@@ -1,264 +1,451 @@
 <!DOCTYPE html>
 <html>
+	<head>
 
-<head>
-    <base href="/">
-    <!-- Basic -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>WorkCar - Driving The Sharing Economy!</title>
-    <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="Porto - Responsive HTML5 Template">
-    <meta name="author" content="okler.net">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Web Fonts  -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
-    <!-- Vendor CSS -->
-    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.css">
-    <link rel="stylesheet" href="vendor/owlcarousel/owl.carousel.min.css" media="screen">
-    <link rel="stylesheet" href="vendor/owlcarousel/owl.theme.default.min.css" media="screen">
-    <link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css" media="screen">
-    <!-- Theme CSS -->
-    <link rel="stylesheet" href="css/theme.css">
-    <link rel="stylesheet" href="css/theme-elements.css">
-    <link rel="stylesheet" href="css/theme-blog.css">
-    <link rel="stylesheet" href="css/theme-shop.css">
-    <link rel="stylesheet" href="css/theme-animate.css">
-    <!-- Current Page CSS -->
-    <link rel="stylesheet" href="vendor/rs-plugin/css/settings.css" media="screen">
-    <link rel="stylesheet" href="vendor/circle-flip-slideshow/css/component.css" media="screen">
-    <!-- Skin CSS -->
-    <link rel="stylesheet" href="css/skins/default.css">
-    <!-- Theme Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
-    <!-- Head Libs -->
-    <script src="vendor/modernizr/modernizr.js"></script>
-    <!--[if IE]>
-            <link rel="stylesheet" href="css/ie.css">
-        <![endif]-->
-    <!--[if lte IE 8]>
-            <script src="vendor/respond/respond.js"></script>
-            <script src="vendor/excanvas/excanvas.js"></script>
-        <![endif]-->
-</head>
+		<!-- Basic -->
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">	
 
-<body ng-app="app">
-    <div class="body" ng-controller="AppCtrl">
-        <header id="header">
-            <div class="container">
-                <div class="logo">
-                    <a href="index.html">
-                        <img alt="Porto" width="235" height="54" data-sticky-width="175" data-sticky-height="40" src="img/logo.png">
-                    </a>
-                </div>
-                <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
-            <div class="navbar-collapse nav-main-collapse collapse">
-                <div class="container">
-                    <ul class="social-icons">
-                        <li class="facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook">Facebook</a></li>
-                        <li class="twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter">Twitter</a></li>
-                        <li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin">Linkedin</a></li>
-                    </ul>
-                    <nav class="nav-main mega-menu">
-                        <ul class="nav nav-pills nav-main" id="mainMenu">
-                            <li class="dropdown" ng-class="{active: ['/register', '/register/'].indexOf(location.path()) !== -1}">
-                                <a class="" ng-href="/register">
-                                        GET A WORKCAR
-                                    </a>
-                                <li class="dropdown">
-                                    <a class="" href="#">
-                                        FAQ
-                                    </a>
-                                    <li class="dropdown">
-                                        <a class="" href="#">
-                                        HELP
-                                    </a>
-                        </ul>
-                        </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div ng-view></div>
-        <footer id="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-ribbon">
-                        <span>Get in Touch</span>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="newsletter">
-                            <h4 class="heading-primary">Newsletter</h4>
-                            <p>Keep with new WorkCar features and technology. Enter your e-mail and subscribe to our newsletter now.</p>
-                            <div class="alert alert-success hidden" id="newsletterSuccess">
-                                <strong>Success!</strong> You've been added to our email list.
-                            </div>
-                            <div class="alert alert-danger hidden" id="newsletterError"></div>
-                            <form id="newsletterForm" name="MailchimpSubscriptionForm" ng-controller="MailchimpSubscriptionCtrl">
-                                <div class="input-group" ng-hide="mailchimp.result === 'success'">
-                                    <input class="hidden" type="hidden" ng-model="mailchimp.username" ng-init="mailchimp.username='workcar'">
-                                    <input class="hidden" type="hidden" ng-model="mailchimp.dc" ng-init="mailchimp.dc='us11'">
-                                    <input class="hidden" type="hidden" ng-model="mailchimp.u" ng-init="mailchimp.u='48e3866be26d164fb12e857cc'">
-                                    <input class="hidden" type="hidden" ng-model="mailchimp.id" ng-init="mailchimp.id='8f21fd44e1'">
-                                    <input class="hidden" type="hidden" type="text" name="fname" ng-model="mailchimp.FNAME" placeholder="First name">
-                                    <input class="hidden" type="hidden" type="text" name="lname" ng-model="mailchimp.LNAME" placeholder="Last name">
-                                    <input class="form-control" placeholder="Email Address" type="email" name="email" ng-model="mailchimp.EMAIL" required>
-                                    <span class="input-group-btn">
-                                            <button class="btn btn-default" ng-disabled="MailchimpSubscriptionForm.$invalid" ng-click="addSubscription(mailchimp)" type="submit">Go!</button>
-                                        </span>
-                                </div>
-                                <!--End mc_embed_signup-->
-                                <!-- Show error message if MailChimp unsuccessfully added the email to the list. -->
-                                <div ng-show="mailchimp.result === 'error'" ng-cloak>
-                                    <span ng-bind-html="mailchimp.errorMessage"></span>
-                                </div>
-                                <!-- Show success message if MailChimp returned successfully. -->
-                                <div ng-show="mailchimp.result === 'success'" ng-cloak>
-                                    <span ng-bind-html="mailchimp.successMessage"></span>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <h4 class="heading-primary">Latest Tweets</h4>
-                        <div id="tweet" class="twitter" data-plugin-tweets data-plugin-options='{"username": uber, "count": 10}'>
-                            <a class="twitter-timeline" href="https://twitter.com/Uber" data-widget-id="625542943294619649">@Uber के ट्वीट</a>
-                            <script>
-                            ! function(d, s, id) {
-                                var js, fjs = d.getElementsByTagName(s)[0],
-                                    p = /^http:/.test(d.location) ? 'http' : 'https';
-                                if (!d.getElementById(id)) {
-                                    js = d.createElement(s);
-                                    js.id = id;
-                                    js.src = p + "://platform.twitter.com/widgets.js";
-                                    fjs.parentNode.insertBefore(js, fjs);
-                                }
-                            }(document, "script", "twitter-wjs");
-                            </script>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="contact-details">
-                            <h4 class="heading-primary">Contact Us</h4>
-                            <ul class="contact">
-                                <li>
-                                    <p><i class="fa fa-map-marker"></i> <strong>Address:</strong> 548 Market St San Francisco, CA 94104</p>
-                                </li>
-                                <li>
-                                    <p><i class="fa fa-phone"></i> <strong>Phone:</strong> (415) 932-0965</p>
-                                </li>
-                                <li>
-                                    <p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com">support@workcar.com</a></p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <h4 class="heading-primary">Follow Us</h4>
-                        <div class="social-icons">
-                            <ul class="social-icons">
-                                <li class="facebook"><a href="http://www.facebook.com/" target="_blank" data-placement="bottom" data-tooltip title="Facebook">Facebook</a></li>
-                                <li class="twitter"><a href="http://www.twitter.com/" target="_blank" data-placement="bottom" data-tooltip title="Twitter">Twitter</a></li>
-                                <li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" data-placement="bottom" data-tooltip title="Linkedin">Linkedin</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-1">
-                            <a href="index.html" class="logo">
-                                <img alt="Porto Website Template" class="img-responsive" src="img/logo-footer.png">
-                            </a>
-                        </div>
-                        <div class="col-md-7">
-                            <p>© Copyright 2015. All Rights Reserved.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <nav id="sub-menu">
-                                <ul>
-                                    <li><a href="page-faq.html">FAQ's</a></li>
-                                    <li><a href="help.html">Support</a></li>
-                                    <li><a href="register">Sign Up</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-    <!-- Vendor -->
-    <!--[if lt IE 9]>
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-        <![endif]-->
-    <!--[if gte IE 9]><!-->
-    <script src="vendor/jquery/jquery.js"></script>
-    <!--<![endif]-->
-    <script src="vendor/jquery.appear/jquery.appear.js"></script>
-    <script src="vendor/jquery.easing/jquery.easing.js"></script>
-    <script src="vendor/jquery-cookie/jquery-cookie.js"></script>
-    <script src="vendor/bootstrap/bootstrap.js"></script>
-    <script src="vendor/common/common.js"></script>
-    <script src="vendor/jquery.validation/jquery.validation.js"></script>
-    <script src="vendor/jquery.stellar/jquery.stellar.js"></script>
-    <script src="vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
-    <script src="vendor/jquery.gmap/jquery.gmap.js"></script>
-    <script src="vendor/isotope/jquery.isotope.js"></script>
-    <script src="vendor/owlcarousel/owl.carousel.js"></script>
-    <script src="vendor/jflickrfeed/jflickrfeed.js"></script>
-    <script src="vendor/magnific-popup/jquery.magnific-popup.js"></script>
-    <script src="vendor/vide/vide.js"></script>
-    <!-- Theme Base, Components and Settings -->
-    <script src="js/theme.js"></script>
-    <!-- Specific Page Vendor and Views -->
-    <script src="vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-    <script src="vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
-    <script src="js/views/view.home.js"></script>
-    <!-- Theme Custom -->
-    <script src="js/custom.js"></script>
-    <!-- Theme Initialization Files -->
-    <script src="js/theme.init.js"></script>
-    <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
-        <script type="text/javascript">
-        
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-12345678-1']);
-            _gaq.push(['_trackPageview']);
-        
-            (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-        
-        </script>
-         -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-cookies.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-messages.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-aria.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.min.js"></script>
-    <script src="bower_components/angular-socialsharing/dist/angular-socialsharing.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="bower_components/angular-mailchimp/angular-mailchimp.js"></script>
-    <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
-    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
-    <script src="js/app/app.js"></script>
-</body>
+		<title>WorkCar - Driving The Sharing Economy!</title>	
 
+		<meta name="keywords" content="HTML5 Template" />
+		<meta name="description" content="Porto - Responsive HTML5 Template">
+		<meta name="author" content="okler.net">
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Web Fonts  -->
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="vendor/bootstrap/bootstrap.css">
+		<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.css">
+		<link rel="stylesheet" href="vendor/owlcarousel/owl.carousel.min.css" media="screen">
+		<link rel="stylesheet" href="vendor/owlcarousel/owl.theme.default.min.css" media="screen">
+		<link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css" media="screen">
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="css/theme.css">
+		<link rel="stylesheet" href="css/theme-elements.css">
+		<link rel="stylesheet" href="css/theme-blog.css">
+		<link rel="stylesheet" href="css/theme-shop.css">
+		<link rel="stylesheet" href="css/theme-animate.css">
+
+		<!-- Current Page CSS -->
+		<link rel="stylesheet" href="vendor/rs-plugin/css/settings.css" media="screen">
+		<link rel="stylesheet" href="vendor/circle-flip-slideshow/css/component.css" media="screen">
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="css/skins/default.css">
+
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- Head Libs -->
+		<script src="vendor/modernizr/modernizr.js"></script>
+
+		<!--[if IE]>
+			<link rel="stylesheet" href="css/ie.css">
+		<![endif]-->
+
+		<!--[if lte IE 8]>
+			<script src="vendor/respond/respond.js"></script>
+			<script src="vendor/excanvas/excanvas.js"></script>
+		<![endif]-->
+
+	</head>
+	<body>
+
+		<div class="body">
+			<header id="header">
+				<div class="container">
+					<div class="logo">
+						<a href="index.html">
+							<img alt="Porto" width="235" height="54" data-sticky-width="175" data-sticky-height="40" src="img/logo.png">
+						</a>
+					</div>
+					<button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
+						<i class="fa fa-bars"></i>
+					</button>
+				</div>
+				<div class="navbar-collapse nav-main-collapse collapse">
+					<div class="container">
+						<ul class="social-icons">
+							<li class="facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook">Facebook</a></li>
+							<li class="twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter">Twitter</a></li>
+							<li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin">Linkedin</a></li>
+						</ul>
+						<nav class="nav-main mega-menu">
+							<ul class="nav nav-pills nav-main" id="mainMenu">
+								<li class="dropdown active">
+									<a class="" href="signup.html">
+										GET A WORKCAR
+									</a>
+									
+										
+								<li class="dropdown">
+									<a class="" href="#">
+										FAQ
+									</a>
+									
+								<li class="dropdown">
+									<a class="" href="#">
+										HELP
+									</a>
+									
+									</ul>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</header>
+
+			<div role="main" class="main">
+
+				<div class="slider-container">
+					<div class="slider" id="revolutionSlider" data-plugin-revolution-slider data-plugin-options='{"startheight": 450}'>
+						<ul>
+							<li data-transition="fade" data-slotamount="10" data-masterspeed="300">
+								<img src="img/slides/slide-bg-3.jpg" data-bgfit="cover" data-bgposition="right center" data-bgrepeat="no-repeat" alt="">
+
+								<div class="tp-caption featured-label sft stb"
+									 data-x="center"
+									 data-y="175"
+									 data-speed="300"
+									 data-start="1500"
+									 data-easing="easeOutExpo"></div>
+
+								<div class="tp-caption bottom-label sft stb"
+									 data-x="center"
+									 data-y="240"
+									 data-speed="500"
+									 data-start="2000"
+									 data-easing="easeOutExpo"></div>
+								
+
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="home-intro">
+					<div class="container">
+
+						<div class="row">
+							<div class="col-md-8">
+								<p>
+									Owned By <em>everyday people.</em>
+									<span>Sign-up to get your work car today!</span>
+								</p>
+							</div>
+							<div class="col-md-4">
+								<div class="get-started">
+									<a href="signup.html"" class="btn btn-lg btn-primary">Get Started Now!</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="container">
+
+					<div class="row center">
+						<div class="col-md-12">
+							<h2 class="mb-sm word-rotator-title">
+								WorkCar is <strong>evolving</strong> the way the world <strong>drives</strong>.
+							</h2>
+							<p class="lead">
+								By giving drivers a flexible car lease for a variety of money<br> making apps, we make new job opportunities possible!
+							</p>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="container">
+					<div class="row center">
+						<div class="col-md-12"> 
+
+							<video width="540" height="240" controls  poster="img/BigBuckBunny.png">
+	<source src="#">
+	<source src="#">
+	<source src="#">
+	Your browser does not support the video tag or the file format of this video. <a href="http://www.webestools.com/">http://www.webestools.com/</a>
+</video>
+						</div>
+					</div>
+				</div>
+
+                    <section class="section">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<h2 class="mt-lg">What is <strong>WorkCar?</strong></h2>
+								<p class="lead">
+									No worries, No fuss, Always on.
+								</p>
+								<p class="mt-lg">
+									WorkCar provides its members with on-demand flexible master leases (includes gas, insurance, maintenance). WorkCars are configured at the dealership with fleet management hardware (smart card access) that is pre-integrated with the WorkCar fleet management cloud.
+								</p>
+							</div>
+							<div class="col-md-6 mt-lg">
+								<img class="img-responsive" src="img/device.png" data-appear-animation="fadeInRight" alt="">
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container">
+					<div class="featured-boxes">
+						<div class="row">
+							<div class="col-md-3 col-sm-6">
+								<div class="featured-box featured-box-primary featured-box-effect-1">
+									<div class="box-content">
+										<center><img class="img-responsive" src="img/icons/icon1.png" alt=""></center>
+										<h4 class="text-uppercase">FAST APPROVAL</h4>
+										<p>Need a fast way to work? With WorkCar the average onboarding process takes 3-4 days to complete for drivers with a clean record.</p>
+										<p><a href="http://workcar.com/register"> Sign-Up <i class="fa fa-angle-right"></i></a></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="featured-box featured-box-secondary featured-box-effect-1">
+									<div class="box-content">
+										<center><img class="img-responsive" src="img/icons/icon2.png" alt=""></center>
+										<h4 class="text-uppercase">MOST DRIVERS QUALIFY</h4>
+										<p>Our approval process looks at your entire background - including your driving, criminal, and employment history. Not just your credit.</p>
+										<p><a href="http://workcar.com/register" class="lnk-secondary learn-more">  Sign-Up <i class="fa fa-angle-right"></i></a></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="featured-box featured-box-tertiary featured-box-effect-1">
+									<div class="box-content">
+										<center><img class="img-responsive" src="img/icons/icon3.png" alt=""></center>
+										<h4 class="text-uppercase">INSURED & MAINTAINED</h4>
+										<p>All of our cars come with a full coverage insurance policy and bumper to bumper warranty built right into your car payment!</p>
+										<p><a href="http://workcar.com/register" class="lnk-tertiary learn-more">  Sign-Up <i class="fa fa-angle-right"></i></a></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6">
+								<div class="featured-box featured-box-quaternary featured-box-effect-1">
+									<div class="box-content">
+										<center><img class="img-responsive" src="img/icons/icon4.png" alt=""></center>
+										<h4 class="text-uppercase">CAR SHARING MODE</h4>
+										<p>Whenever you're on vacation or don’t feel like driving just put your WorkCar in sharing mode, and let your vehicle pay for itself!</p>
+										<p><a href="http://workcar.com/register" class="lnk-quaternary learn-more">  Sign-Up <i class="fa fa-angle-right"></i></a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<hr class="tall">
+						</div>
+					</div>
+					<div class="row center mt-xl">
+						<div class="owl-carousel" data-plugin-options='{"items": 6, "autoplay": true, "autoplayTimeout": 3000}'>
+														<div>
+								<img class="img-responsive" src="img/logos/logo-1.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="img/logos/logo-2.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="img/logos/logo-3.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="img/logos/logo-4.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="img/logos/logo-5.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="img/logos/logo-6.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="img/logos/logo-7.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="img/logos/logo-8.png" alt="">
+							</div>
+                            	<div>
+								<img class="img-responsive" src="img/logos/logo-9.png" alt="">
+							</div>
+                            	<div>
+								<img class="img-responsive" src="img/logos/logo-10.png" alt="">
+							</div>
+                            	<div>
+								<img class="img-responsive" src="img/logos/logo-11.png" alt="">
+							</div>
+	<div>
+								<img class="img-responsive" src="img/logos/logo-12.png" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+                
+				<section class="call-to-action call-to-action-default with-button-arrow call-to-action-in-footer">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="call-to-action-content">
+									<h3>Join <strong>WorkCar</strong> for the adventure of a <strong>lifetime.</strong></h3>
+									<p>We strive to provide our drivers with the most efficient and well maintained<br> vehicles so we can make work less of a job and more of an adventure!</p>
+								</div>
+								<div class="call-to-action-btn">
+									<a href="http://workcar.com/register" target="signup.html" class="btn btn-lg btn-primary">Sign up</a><span class="arrow hlb hidden-xs hidden-sm hidden-md" data-appear-animation="rotateInUpLeft" style="top: -12px;"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			</div>
+
+			<footer id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="footer-ribbon">
+							<span>Get in Touch</span>
+						</div>
+						<div class="col-md-3">
+							<div class="newsletter">
+								<h4 class="heading-primary">Newsletter</h4>
+								<p>Keep with new WorkCar features and technology. Enter your e-mail and subscribe to our newsletter now.</p>
+			
+								<div class="alert alert-success hidden" id="newsletterSuccess">
+									<strong>Success!</strong> You've been added to our email list.
+								</div>
+			
+								<div class="alert alert-danger hidden" id="newsletterError"></div>
+			
+								<form id="newsletterForm" action="php/newsletter-subscribe.php" method="POST">
+									<div class="input-group">
+										<input class="form-control" placeholder="Email Address" name="newsletterEmail" id="newsletterEmail" type="text">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Go!</button>
+										</span>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<h4 class="heading-primary">Latest Tweets</h4>
+							<div id="tweet" class="twitter" data-plugin-tweets data-plugin-options='{"username": uber, "count": 10}'>
+								<a class="twitter-timeline" href="https://twitter.com/Uber" data-widget-id="625542943294619649">@Uber के ट्वीट</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="contact-details">
+								<h4 class="heading-primary">Contact Us</h4>
+								<ul class="contact">
+									<li><p><i class="fa fa-map-marker"></i> <strong>Address:</strong> 548 Market St San Francisco, CA 94104</p></li>
+									<li><p><i class="fa fa-phone"></i> <strong>Phone:</strong>  (415) 932-0965</p></li>
+									<li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com">support@workcar.com</a></p></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<h4 class="heading-primary">Follow Us</h4>
+							<div class="social-icons">
+								<ul class="social-icons">
+									<li class="facebook"><a href="http://www.facebook.com/" target="_blank" data-placement="bottom" data-tooltip title="Facebook">Facebook</a></li>
+									<li class="twitter"><a href="http://www.twitter.com/" target="_blank" data-placement="bottom" data-tooltip title="Twitter">Twitter</a></li>
+									<li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" data-placement="bottom" data-tooltip title="Linkedin">Linkedin</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-copyright">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-1">
+								<a href="index.html" class="logo">
+									<img alt="Porto Website Template" class="img-responsive" src="img/logo-footer.png">
+								</a>
+							</div>
+							<div class="col-md-7">
+								<p>© Copyright 2015. All Rights Reserved.</p>
+							</div>
+							<div class="col-md-4">
+								<nav id="sub-menu">
+									<ul>
+										<li><a href="page-faq.html">FAQ's</a></li>
+										<li><a href="help.html">Support</a></li>
+										<li><a href="http://workcar.com/register">Sign Up</a></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<!-- Vendor -->
+		<!--[if lt IE 9]>
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="vendor/jquery/jquery.js"></script>
+		<!--<![endif]-->
+		<script src="vendor/jquery.appear/jquery.appear.js"></script>
+		<script src="vendor/jquery.easing/jquery.easing.js"></script>
+		<script src="vendor/jquery-cookie/jquery-cookie.js"></script>
+		<script src="vendor/bootstrap/bootstrap.js"></script>
+		<script src="vendor/common/common.js"></script>
+		<script src="vendor/jquery.validation/jquery.validation.js"></script>
+		<script src="vendor/jquery.stellar/jquery.stellar.js"></script>
+		<script src="vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
+		<script src="vendor/jquery.gmap/jquery.gmap.js"></script>
+		<script src="vendor/isotope/jquery.isotope.js"></script>
+		<script src="vendor/owlcarousel/owl.carousel.js"></script>
+		<script src="vendor/jflickrfeed/jflickrfeed.js"></script>
+		<script src="vendor/magnific-popup/jquery.magnific-popup.js"></script>
+		<script src="vendor/vide/vide.js"></script>
+		
+		<!-- Theme Base, Components and Settings -->
+		<script src="js/theme.js"></script>
+		
+		<!-- Specific Page Vendor and Views -->
+		<script src="vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+		<script src="vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+		<script src="vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
+		<script src="js/views/view.home.js"></script>
+		
+		<!-- Theme Custom -->
+		<script src="js/custom.js"></script>
+		
+		<!-- Theme Initialization Files -->
+		<script src="js/theme.init.js"></script>
+
+		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
+		<script type="text/javascript">
+		
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-12345678-1']);
+			_gaq.push(['_trackPageview']);
+		
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		
+		</script>
+		 -->
+
+	</body>
 </html>
